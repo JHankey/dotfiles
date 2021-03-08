@@ -35,6 +35,9 @@ let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 """""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""
+
+" vim-plug UNIX install curl -fLo ~/.vim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 call plug#begin('~/.vim/plugged')
 
 " Lightline Status bar
