@@ -1,4 +1,25 @@
-""""""""""""""""""""""""""""""""""/
+"""""""""""""""""""""""""""""""""""""
+" Basic setup
+"""""""""""""""""""""""""""""""""""""
+set nocompatible
+
+" Enable syntax and plugin (for netrw)
+syntax enable
+filetype plugin on
+
+" Search down into subfolders
+" Provides tab-completion for all rile-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+" Statusline always on (doesn't need more than one tab open)
+set laststatus=2
+
+
+
+""""""""""""""""""""""""""""""""""""
 " Line
 """"""""""""""""""""""""""""""""""""
 
@@ -6,11 +27,27 @@
 set relativenumber
 set number
 
+" Enable Explore relative line numbers
+let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+
+
+
+"""""""""""""""""""""""""""""""""""""
+" Plugins
+"""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+" Lightline Status bar
+Plug 'https://github.com/itchyny/lightline.vim'
+
+call plug#end()
+
 
 
 """""""""""""""""""""""""""""""""""""
 " Indents
 """""""""""""""""""""""""""""""""""""
+
 " replace tabs with spaces
 set expandtab
 " 1 tab = 2 spaces
@@ -28,14 +65,16 @@ set autoindent
 """""""""""""""""""""""""""""""""""""
 " Search
 """""""""""""""""""""""""""""""""""""
+
 " Ignore case when searching
 set ignorecase
 set smartcase
 set hlsearch
 
-" highlight all pattern matches WHILE typing the pattern
+" Highlight all pattern matches WHILE typing the pattern
 set incsearch
 set shortmess-=S
+
 
 
 """""""""""""""""""""""""""""""""""""
@@ -71,6 +110,7 @@ nnoremap <leader>/ :noh<cr>
 " Leader bindings for adding new line
 map <leader>o o<Esc>
 map <leader>O O<Esc>
+
 
 
 """""""""""""""""""""""""""""""""""""
