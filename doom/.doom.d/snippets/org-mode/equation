@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: equation
+# uuid: 2
+# key: \eq
+# condition: t
+# --
+
+\begin{equation}
+$0
+\end{equation}
