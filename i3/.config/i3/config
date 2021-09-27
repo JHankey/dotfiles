@@ -112,7 +112,7 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: General"
 set $ws2 "2: General"
-set $ws3 "3: Emacs"
+set $ws3 "3: Code"
 set $ws4 "4: Music"
 set $ws5 "5: Video"
 set $ws6 6
@@ -237,6 +237,7 @@ exec --no-startup-id picom -CGb
 
 # Assignments for specific workspaces
 assign [class="Emacs"] $ws3
+assign [class="jetbrains-idea"] $ws3
 assign [class="vlc"] $ws5
 
 # Restore GNOME's settings
