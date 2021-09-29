@@ -115,11 +115,11 @@ set $ws2 "2: General"
 set $ws3 "3: Code"
 set $ws4 "4: Music"
 set $ws5 "5: Video"
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
+set $ws6 "6: General"
+set $ws7 "7: General"
+set $ws8 "8: General"
+set $ws9 "9: General"
+set $ws10 "10: General"
 
 # monitors
 set $monitor_right eDP-1
@@ -186,9 +186,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# open spotify in firefox on workspace 4 (music)
-bindsym $mod+Shift+f workspace $ws4; exec firefox -new-window https://open.spotify.com/;
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -222,7 +219,7 @@ bar {
         status_command i3status
 }
 
-# PERSONAL CONFIG BELOW
+# --------------PERSONAL CONFIG----------------
 # Auto start
 exec_always feh --bg-fill $HOME/Pictures/Wallpapers/fernbackground.jpg
 
@@ -237,6 +234,7 @@ exec --no-startup-id picom -CGb
 
 # Assignments for specific workspaces
 assign [class="Emacs"] $ws3
+assign [title="win0"] $ws3 # Intellij startup window
 assign [class="jetbrains-idea"] $ws3
 assign [class="vlc"] $ws5
 
@@ -245,3 +243,9 @@ exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
 
 # Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
 exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+
+# i3lock keybinding
+bindsym Mod4+l exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernbackground.png -c 000000
+
+# open spotify in firefox on workspace 4 (music)
+bindsym $mod+Shift+f workspace $ws4; exec firefox -new-window https://open.spotify.com/;

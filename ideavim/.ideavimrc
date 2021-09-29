@@ -1,0 +1,64 @@
+"""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""
+
+" Display all matching files when we tab complete
+set wildmenu
+
+"""""""""""""""""""""""""""""""""""""
+" Line
+"""""""""""""""""""""""""""""""""""""
+
+" Show relative line numbers
+set relativenumber
+set number
+
+"""""""""""""""""""""""""""""""""""""
+" Search
+"""""""""""""""""""""""""""""""""""""
+
+" Show the matching brackets
+set showmatch
+
+"""""""""""""""""""""""""""""""""""""
+" Search
+"""""""""""""""""""""""""""""""""""""
+
+" Ignore case when searching
+set ignorecase
+set smartcase
+set hlsearch
+
+" Highligh all pattern matches WHILE tying the pattern
+set incsearch
+set shortmess-=S
+
+"""""""""""""""""""""""""""""""""""""
+" Keybindings
+"""""""""""""""""""""""""""""""""""""
+
+" j k for escape
+imap jk <Esc>
+
+" Set space to leader
+let mapleader = " "
+
+" Toggle line numbers
+noremap <leader>N :call ToggleNumbers()<cr>
+
+" Clear last search highligh
+nnoremap <leader>/ :noh<cr>
+
+"""""""""""""""""""""""""""""""""""""
+" Functions
+"""""""""""""""""""""""""""""""""""""
+
+function! ToggleNumbers()
+  if (&number == 1 || &relativenumber == 1)
+    set nonumber
+    set norelativenumber
+  elseif (&number == 0 && &relativenumber == 0)
+    set number
+    set relativenumber
+  endif
+endfunction
