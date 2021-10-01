@@ -247,5 +247,8 @@ exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/activ
 # i3lock keybinding
 bindsym Mod4+l exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernbackground.png -c 000000
 
-# open spotify in firefox on workspace 4 (music)
+# Open spotify in firefox on workspace 4 (music)
 bindsym $mod+Shift+f workspace $ws4; exec firefox -new-window https://open.spotify.com/;
+
+# Sets monitor positioning
+exec_always ~/.config/i3/monitor_pos.sh
