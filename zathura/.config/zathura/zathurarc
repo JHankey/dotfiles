@@ -10,4 +10,4 @@ map J zoom out
 map p print
 unmap q
 set recolor-darkcolor "#dcdccc"
-set recolor-lightcolor "#1f1f1f"
+set recolor-lightcolor "#333333"
