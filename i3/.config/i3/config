@@ -216,7 +216,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status -c /home/jacob/.config/i3status/i3status.conf
 }
 
 # --------------PERSONAL CONFIG----------------
@@ -248,7 +248,7 @@ exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/activ
 bindsym Mod4+l exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernblur.png -t -f
 
 # Open spotify in firefox on workspace 4 (music)
-bindsym $mod+Shift+f workspace $ws4; exec firefox -new-window https://open.spotify.com/;
+bindsym $mod+Shift+f workspace $ws4; exec --no-startup-id firefox -new-window https://open.spotify.com/;
 
 # Sets monitor positioning
 exec_always ~/.config/i3/monitor_pos.sh
