@@ -5,7 +5,7 @@
 # condition: t
 # --
 
-#+SETUPFILE: ~/Documents/work/assets/standard.org
+#+SETUPFILE: ~/Documents/org/assets/standard.org
 #+TITLE: ${1:title}
 #+AUTHOR: ${2:author}
 #+DATE: ${}
