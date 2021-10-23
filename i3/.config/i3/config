@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -245,7 +245,7 @@ exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
 exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
 
 # i3lock keybinding
-bindsym Mod4+l exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernblur.png -t -f
+#bindsym Mod4+l exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernblur.png -t -f
 
 # Open spotify in firefox on workspace 4 (music)
 bindsym $mod+Shift+f workspace $ws4; exec --no-startup-id firefox -new-window https://open.spotify.com/;

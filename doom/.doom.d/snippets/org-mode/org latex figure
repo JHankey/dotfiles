@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: org_latex_figure
+# uuid: 19102021:043420
+# key: #+fig
+# condition: t
+# --
+
+#+ATTR_LATEX: :width ${}cm :options angle=0 :placement [!htpb] :float
+#+CAPTION: ${}
+#+LABEL: ${}
+
+$0

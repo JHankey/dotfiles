@@ -237,3 +237,5 @@
 ;;           (const "Coverage")
 ;;           (const "Release"))
 ;;   :group 'project-build)
+
+;;(bibtex-set-dialect 'biblatex)
