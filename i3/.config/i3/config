@@ -33,21 +33,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 set $mod Mod4
 exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
 for_window [class="^.*"] border pixel 2
+set $term --no-startup-id $TERMINAL
 gaps inner 25
 gaps outer 15
-set $term --no-startup-id $TERMINAL
-
-# #---Dropdown Windows---# #
-# General dropdown window traits. The order can matter.
-for_window [instance="dropdown_*"] floating enable
-for_window [instance="dropdown_*"] move scratchpad
-for_window [instance="dropdown_*"] sticky enable
-for_window [instance="dropdown_*"] scratchpad show
-for_window [instance="dropdown_tmuxdd"] resize set 625 450
-for_window [instance="dropdown_dropdowncalc"] resize set 800 300
-for_window [instance="dropdown_tmuxdd"] border pixel 3
-for_window [instance="dropdown_dropdowncalc"] border pixel 2
-for_window [instance="dropdown_*"] move position center
 
 bar {
 	font pango:mono 10
@@ -60,12 +48,13 @@ bar {
 		background #2e3440
 		separator #ebdbb2
 		#<colorclass> <border> <background> <text>
-		focused_workspace  #81a1c1 #81a1c1 #ebdbb2
-		inactive_workspace #2e3440 #2e3440 #928374
-		urgent_workspace   #cc241d #900000 #fb4934
+		focused_workspace  #446e99 #446e99 #ffffff
+		inactive_workspace #2e3440 #2e3440 #aaaaaa
+		urgent_workspace   #cc241d #900000 #ffffff
 	}
 }
 
+# #---Key Bindings---# #
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -79,7 +68,7 @@ bindsym $mod+Escape workspace next
 bindsym $mod+Shift+Escape	workspace prev
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -F -nb '#2e3440' -sb '#446e99' -nf '#aaaaaa' -sf '#ffffff' -nhf '#ffffff' -shf '#ffffff' -nhb '#2e3440' -shb '#446e99'
 
 # change focus
 bindsym $mod+h focus left
@@ -121,13 +110,13 @@ bindsym $mod+a focus parent
 set $ws1 "1: General"
 set $ws2 "2: General"
 set $ws3 "3: Code"
-set $ws4 "4: Music"
-set $ws5 "5: Video"
+set $ws4 "4: General"
+set $ws5 "5: General"
 set $ws6 "6: General"
 set $ws7 "7: General"
 set $ws8 "8: General"
-set $ws9 "9: General"
-set $ws10 "10: General"
+set $ws9 "9: Video"
+set $ws10 "10: Music"
 
 # monitors
 set $monitor_right eDP-1
@@ -225,12 +214,19 @@ set $mode_gaps Toggle gaps: (1) on (2) off
 bindsym $mod+t mode "$mode_gaps"
 mode "$mode_gaps" {
     bindsym 1 mode "default", gaps inner all set 25, gaps outer all set 15
+    bindsym $mod+1 mode "default", gaps inner all set 25, gaps outer all set 15
     bindsym 2 mode "default", gaps inner all set 0, gaps outer all set 0
+    bindsym $mod+2 mode "default", gaps inner all set 0, gaps outer all set 0
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-# I3 Color scheme
+bindsym $mod+equal gaps outer current plus 5
+bindsym $mod+minus gaps outer current minus 5
+bindsym $mod+Shift+equal gaps inner current plus 5
+bindsym $mod+Shift+minus gaps inner current minus 5
+
+##---I3 Color scheme---##
 # class                 border  backgr. text    indicator child_border
 
 client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1   #81a1c1 
@@ -255,7 +251,7 @@ exec --no-startup-id picom -CGb
 assign [class="Emacs"] $ws3
 assign [title="win0"] $ws3 # Intellij startup window
 assign [class="jetbrains-idea"] $ws3
-assign [class="vlc"] $ws5
+assign [class="vlc"] $ws9
 
 # Restore GNOME's settings
 exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
@@ -267,7 +263,7 @@ exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/activ
 bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernblur.png -t -f
 
 # Open spotify in firefox on workspace 4 (music)
-bindsym $mod+Shift+f workspace $ws4; exec --no-startup-id firefox -new-window https://open.spotify.com/;
+bindsym $mod+Shift+f workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/;
 
 # Sets monitor positioning
 exec_always ~/.config/i3/monitor_pos.sh
