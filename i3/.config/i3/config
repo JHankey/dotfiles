@@ -31,7 +31,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # #---Basic Definitions---# #
 set $mod Mod4
-exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
 for_window [class="^.*"] border pixel 2
 set $term --no-startup-id $TERMINAL
 gaps inner 25
@@ -267,3 +266,4 @@ bindsym $mod+Shift+f workspace $ws10; exec --no-startup-id firefox -new-window h
 
 # Sets monitor positioning
 exec_always ~/.config/i3/monitor_pos.sh
+exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
