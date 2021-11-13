@@ -28,6 +28,28 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# ======COLORS============================================
+set $color_primary #F0544C
+set $color_background #333333
+set $color_backgroundAlt #222222
+set $color_background2 #681919
+set $color_background3 #5e2e2e
+set $color_foreground #DADADA
+set $color_foregroundAlt #FFFFFF
+set $color_indicator #666666
+set $color_indicatorAlt #444444
+set $color_urgent #8d0000
+
+
+# <colorclass>          <border>             <background>      <text>               <indicator>         <child_border>
+client.focused          $color_primary       $color_background $color_foreground    $color_indicator    $color_primary
+client.focused_inactive $color_backgroundAlt $color_background $color_foreground    $color_indicatorAlt $color_background
+client.unfocused        $color_background    $color_background $color_foreground    $color_indicator    $color_backgroundAlt
+client.urgent           $color_background    $color_urgent     $color_foregroundAlt $color_urgent       $color_urgent
+client.placeholder      #000000              #0c0c0c           #ffffff              #000000             #0c0c0c
+
+client.background       $color_background
+
 
 # #---Basic Definitions---# #
 set $mod Mod4
@@ -44,11 +66,11 @@ bar {
 	modifier none
 	#i3bar_command i3bar --transparency #282828
 	colors {
-		background #2e3440
+		background $color_background3
 		separator #ebdbb2
 		#<colorclass> <border> <background> <text>
-		focused_workspace  #446e99 #446e99 #ffffff
-		inactive_workspace #2e3440 #2e3440 #aaaaaa
+		focused_workspace  $color_primary $color_primary $color_foreground 
+		inactive_workspace $color_background2 $color_background2 #aaaaaa
 		urgent_workspace   #cc241d #900000 #ffffff
 	}
 }
@@ -67,7 +89,7 @@ bindsym $mod+Escape workspace next
 bindsym $mod+Shift+Escape	workspace prev
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -F -nb '#2e3440' -sb '#446e99' -nf '#aaaaaa' -sf '#ffffff' -nhf '#ffffff' -shf '#ffffff' -nhb '#2e3440' -shb '#446e99'
+bindsym $mod+d exec dmenu_run -F -nb '$color_background3' -sb '$color_primary' -nf '#aaaaaa' -sf '#ffffff' -nhf '#ffffff' -shf '#ffffff' -nhb '$color_background3' -shb '$color_primary'
 
 # change focus
 bindsym $mod+h focus left
@@ -225,20 +247,9 @@ bindsym $mod+minus gaps outer current minus 5
 bindsym $mod+Shift+equal gaps inner current plus 5
 bindsym $mod+Shift+minus gaps inner current minus 5
 
-##---I3 Color scheme---##
-# class                 border  backgr. text    indicator child_border
-
-client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1   #81a1c1 
-client.focused_inactive #3d4459 #3d4459 #ffffff #3d4459   #3d4459 
-client.unfocused        #2e3440 #2e3440 #888888 #2e3440   #2e3440 
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
-client.background       #ffffff
-
 # --------------PERSONAL CONFIG----------------
 # Auto start
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/fernbackground.jpg
+exec_always wal -i $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg && clear
 
 # Picom for rendering (tranparent workspaces)
 exec --no-startup-id picom -CGb
@@ -259,7 +270,7 @@ exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
 exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
 
 # i3lock keybinding
-bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/fernblur.png -t -f
+bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/grand-teton-national-park-blur-cropped-2.png -f -t
 
 # Open spotify in firefox on workspace 4 (music)
 bindsym $mod+Shift+f workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/;
