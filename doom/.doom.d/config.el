@@ -170,6 +170,11 @@
 ;;     (save-buffer)
 ;;     (TeX-command-run-all nil)))
 
+(setq TeX-PDF-mode t)
+(setq TeX-command-force "LaTeX")
+(setq TeX-clean-confirm t)
+(setq TeX-view-evince-keep-focus t)
+
 (setq org-roam-directory "~/Documents/roam_notes")
 
 ;; (use-package! dap-mode
@@ -240,7 +245,6 @@
 ;;           (const "Release"))
 ;;   :group 'project-build)
 
-;;(bibtex-set-dialect 'biblatex)
 
 (defun my-browse-url-maybe-privately (url &optional new-window)
   "Ask whether URL should be browsed in a private browsing window."
