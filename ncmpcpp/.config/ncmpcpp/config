@@ -1,4 +1,5 @@
 mpd_port = "6000"
+mpd_music_dir = "~/Music"
 
 autocenter_mode = "yes"
 follow_now_playing_lyrics = "yes"
@@ -44,13 +45,17 @@ visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "60"
 visualizer_type = "spectrum"
 visualizer_in_stereo = "yes"
-visualizer_look = "+|"
+visualizer_look = "●▮"
 
 ## Navigation ##
 cyclic_scrolling = "yes"
 header_text_scrolling = "yes"
 jump_to_now_playing_song_at_start = "yes"
 lines_scrolled = "2"
+
+## Media Library ##
+media_library_primary_tag = "album_artist"
+media_library_albums_split_by_date = "no"
 
 ## Other ##
 system_encoding = "utf-8"
