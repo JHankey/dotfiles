@@ -55,8 +55,8 @@ client.background       $color_background
 set $mod Mod4
 for_window [class="^.*"] border pixel 2
 set $term --no-startup-id $TERMINAL
-gaps inner 25
-gaps outer 15
+gaps inner 0
+gaps outer 0
 
 bar {
 	font pango:mono 10
@@ -235,8 +235,8 @@ bindsym $mod+r mode "resize"
 set $mode_gaps Toggle gaps: (1) on (2) off
 bindsym $mod+t mode "$mode_gaps"
 mode "$mode_gaps" {
-    bindsym 1 mode "default", gaps inner all set 25, gaps outer all set 15
-    bindsym $mod+1 mode "default", gaps inner all set 25, gaps outer all set 15
+    bindsym 1 mode "default", gaps inner all set 15, gaps outer all set 0
+    bindsym $mod+1 mode "default", gaps inner all set 15, gaps outer all set 0
     bindsym 2 mode "default", gaps inner all set 0, gaps outer all set 0
     bindsym $mod+2 mode "default", gaps inner all set 0, gaps outer all set 0
     bindsym Return mode "default"
@@ -250,7 +250,8 @@ bindsym $mod+Shift+minus gaps inner current minus 5
 
 # --------------PERSONAL CONFIG----------------
 # Auto start
-exec_always wal -i $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg && clear
+#exec_always wal -i $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg && clear
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg
 
 # Picom for rendering (tranparent workspaces)
 exec --no-startup-id picom -CGb
@@ -275,11 +276,17 @@ exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/activ
 # i3lock keybinding
 bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/grand-teton-national-park-sunset-hills-blur.png -f -t
 
+# auto lock the screen
+exec xautolock -detectsleep -time 10 -locker ~/.config/i3/lock_screen.sh
+
 # Open countdown bash script in new terminal in music workspace
 bindsym $mod+Shift+t workspace $ws10; exec alacritty -t "timer" -e countdown;
 
 # Open spotify in firefox on music workspace
-bindsym $mod+Shift+f workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/;
+bindsym $mod+Shift+Control+m workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/;
+
+# Open firefox
+bindsym $mod+Shift+f exec --no-startup-id firefox -new-window
 
 # Launch MPD and NCMPCPP on music workspace
 bindsym $mod+Shift+m workspace $ws10; exec alacritty -t "ncmpcpp" -e ncmpcpp;
