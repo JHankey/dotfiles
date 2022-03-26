@@ -134,16 +134,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: General"
-set $ws2 "2: General"
-set $ws3 "3: Code"
-set $ws4 "4: General"
-set $ws5 "5: General"
-set $ws6 "6: General"
-set $ws7 "7: General"
-set $ws8 "8: General"
-set $ws9 "9: Video"
-set $ws10 "10: Music"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # monitors
 set $monitor_right eDP-1
@@ -172,6 +172,7 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+bindsym $mod+Tab workspace back_and_forth
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -199,16 +200,28 @@ bindsym $mod+Control+0 move container to workspace $ws10; workspace $ws10
 
 # move workspaces between monitors
 bindsym $mod+Control+h move workspace to out $monitor_left
+bindsym $mod+Control+l move workspace to out $monitor_right
 # bindsym $mod+Control+j move workspace to out down
 # bindsym $mod+Control+k move workspace to out up
-bindsym $mod+Control+l move workspace to out $monitor_right
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Power Options' -B 'Exit i3' 'i3-msg exit' -B 'Restart' 'reboot' -B 'Shutdown' 'poweroff'"
+
+set $power_options Power Options: (u) Poweroff, (r) Reboot
+bindsym $mod+Shift+x mode "$power_options"
+
+mode "$power_options" {
+        bindsym u exec poweroff
+        bindsym r exec reboot
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+x mode "default"
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -253,13 +266,13 @@ bindsym $mod+minus gaps outer current minus 5
 bindsym $mod+Shift+equal gaps inner current plus 5
 bindsym $mod+Shift+minus gaps inner current minus 5
 
-# --------------PERSONAL CONFIG----------------
-# Auto start
+# Auto start applications
 #exec_always wal -i $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg && clear
 exec_always feh --bg-fill $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg
-
-# Picom for rendering (tranparent workspaces)
-exec --no-startup-id picom -CGb
+exec_always ~/.config/i3/monitor_pos.sh # Sets monitor positioning
+exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
+exec --no-startup-id picom -CGb # Picom for rendering (tranparent workspaces)
+exec xautolock -detectsleep -time 10 -locker ~/.config/i3/lock_screen.sh # auto lock the screen
 
 # Smart Gaps, only enables gaps on a worksapce when there is at least one container
 # smart_gaps on
@@ -271,31 +284,12 @@ assign [class="jetbrains-idea"] $ws3
 assign [class="vlc"] $ws9
 for_window [instance="ncmpcpp"] move to workspace $ws10
 for_window [instance="timer"] move to workspace $ws10
+for_window [class="Zotero" instance="Toplevel"] floating enable
 
-# Restore GNOME's settings
-exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
-
-# Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
-exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
-
-# i3lock keybinding
-bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/grand-teton-national-park-sunset-hills-blur.png -f -t
-
-# auto lock the screen
-exec xautolock -detectsleep -time 10 -locker ~/.config/i3/lock_screen.sh
-
-# Open countdown bash script in new terminal in music workspace
-bindsym $mod+Shift+t workspace $ws10; exec alacritty -t "timer" -e countdown;
-
-# Open spotify in firefox on music workspace
-bindsym $mod+Shift+Control+m workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/;
-
-# Open firefox
-bindsym $mod+Shift+f exec --no-startup-id firefox -new-window
-
-# Launch MPD and NCMPCPP on music workspace
-bindsym $mod+Shift+m workspace $ws10; exec alacritty -t "ncmpcpp" -e ncmpcpp;
-
-# Sets monitor positioning
-exec_always ~/.config/i3/monitor_pos.sh
-exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
+# Custom keybindings
+bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/grand-teton-national-park-sunset-hills-blur.png -f -t # i3lock keybinding
+bindsym $mod+Shift+t workspace $ws10; exec alacritty -t "timer" -e countdown # Open countdown bash script in new terminal in music workspace
+bindsym $mod+Shift+Control+m workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/ # Open spotify in firefox on music workspace
+bindsym $mod+Shift+f exec --no-startup-id firefox -new-window # Open firefox
+bindsym $mod+Shift+Control+f exec --no-startup-id firefox -private-window -new-window # Open firefox
+bindsym $mod+Shift+m exec alacritty -t "ncmpcpp" -e ncmpcpp # Launch MPD and NCMPCPP on music workspace
