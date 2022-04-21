@@ -34,6 +34,9 @@ set nottimeout
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+" Disable line wrapping
+set nowrap
+
 
 
 """"""""""""""""""""""""""""""""""""
