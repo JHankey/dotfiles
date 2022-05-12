@@ -57,6 +57,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 hi! link netrwMarkFile Search
 
 
+
 """""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""
