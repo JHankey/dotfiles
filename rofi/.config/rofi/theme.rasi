@@ -1,0 +1,99 @@
+* {
+    font:   "DejaVu Sans Mono Medium 10";
+
+    bg0:     #212121;
+    bg1:     #404040;
+    fg0:     #eeffff;
+
+    accent-color:     #f07178;
+    urgent-color:     #f0544c;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    location:   center;
+    width:      40%;
+    y-offset:   -20%;
+
+    background-color:   @bg0;
+}
+
+inputbar {
+    spacing:    5px; 
+    padding:    5px;
+
+    background-color:   @bg1;
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+prompt {
+    text-color: @accent-color;
+}
+
+textbox {
+    padding:            5px;
+    background-color:   @bg1;
+}
+
+listview {
+    padding:    2px 0;
+    lines:      15;
+    columns:    1;
+
+    fixed-height:   false;
+    scrollbar: true;
+}
+
+element {
+    padding:    5px;
+    spacing:    5px;
+}
+
+element normal normal {
+    text-color: @fg0;
+}
+
+element normal urgent {
+    text-color: @urgent-color;
+}
+
+element normal active {
+    text-color: @accent-color;
+}
+
+element selected {
+    text-color: @bg0;
+}
+
+element selected normal, element selected active {
+    background-color:   @accent-color;
+}
+
+element selected urgent {
+    background-color:   @urgent-color;
+}
+
+element-icon {
+    size:   0.8em;
+}
+
+element-text {
+    text-color: inherit;
+}
+
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @bg1;
+    handle-width: 8px ;
+    padding:      0;
+}

@@ -1,0 +1,11 @@
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{name}";
+  font: "DejuVu Sans Mono Medium 10";
+  modi: "window,run,drun,file-browser";
+  show-icons: true;
+  icon-theme: "Yaru";
+}
+
+@theme "theme.rasi"
