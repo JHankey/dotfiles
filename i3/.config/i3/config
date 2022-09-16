@@ -63,8 +63,11 @@ client.background       $color_background
 
 # #---Basic Definitions---# #
 set $mod Mod4
-for_window [class="^.*"] border pixel 2
 set $term --no-startup-id $TERMINAL
+set $wallpaper $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg
+set $wallpaperblur /home/jacob/Pictures/Wallpapers/grand-teton-national-park-sunset-hills-blur.png
+
+for_window [class="^.*"] border pixel 2
 gaps inner 0
 gaps outer 0
 
@@ -94,7 +97,8 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Mod1+q kill
+bindsym Mod1+F4 kill
 
 bindsym $mod+Escape workspace next
 bindsym $mod+Shift+Escape	workspace prev
@@ -102,8 +106,9 @@ bindsym $mod+Shift+Escape	workspace prev
 # start program launcher
 #bindsym $mod+d exec dmenu_run -F -nb '$color_background3' -sb '$color_primary' -nf '#aaaaaa' -sf '#ffffff' -nhf '#ffffff' -shf '#ffffff' -nhb '$color_background3' -shb '$color_primary'
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+Control+d exec rofi -show window
-bindsym $mod+Shift+d exec rofi -show file-browser
+bindsym $mod+Control+f exec rofi -show file-browser
 
 # change focus
 bindsym $mod+h focus left
@@ -181,6 +186,8 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+n workspace next
+bindsym $mod+b workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -193,6 +200,9 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+Tab move container to workspace back_and_forth;
+bindsym $mod+Control+Tab move container to workspace back_and_forth; workspace back_and_forth
+
 
 # move focused window and swap to that screen
 bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
@@ -205,7 +215,6 @@ bindsym $mod+Control+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Control+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Control+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Control+0 move container to workspace $ws10; workspace $ws10
-bindsym $mod+Control+Tab move container to workspace back_and_forth; workspace back_and_forth
 
 # move workspaces between monitors
 bindsym $mod+Control+h move workspace to out $monitor_left
@@ -292,7 +301,7 @@ bindsym $mod+Shift+minus gaps inner current minus 5
 
 # Auto start applications
 #exec_always wal -i $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg && clear
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/grand-teton-national-park-sunset-hills.jpeg
+exec_always feh --bg-fill $wallpaper
 exec_always ~/.config/i3/monitor_pos.sh # Sets monitor positioning
 exec_always --no-startup-id /usr/bin/xmodmap ~/.config/i3/.Xmodmap # Set Alt_R as another super key
 exec --no-startup-id picom -CGb # Picom for rendering (tranparent workspaces)
@@ -311,7 +320,7 @@ for_window [instance="timer"] move to workspace $ws10
 for_window [class="Zotero" instance="Toplevel"] floating enable
 
 # Custom keybindings
-bindsym Mod4+Pause exec --no-startup-id i3lock -i /home/jacob/Pictures/Wallpapers/grand-teton-national-park-sunset-hills-blur.png -f -t # i3lock keybinding
+bindsym Mod4+Pause exec --no-startup-id i3lock -i $wallpaperblur -f -t # i3lock keybinding
 bindsym $mod+Shift+t workspace $ws10; exec alacritty -t "timer" -e countdown # Open countdown bash script in new terminal in music workspace
 bindsym $mod+Shift+Control+m workspace $ws10; exec --no-startup-id firefox -new-window https://open.spotify.com/ # Open spotify in firefox on music workspace
 bindsym $mod+Shift+f exec --no-startup-id firefox -new-window # Open firefox
