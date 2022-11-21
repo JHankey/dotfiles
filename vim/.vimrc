@@ -6,6 +6,7 @@ set nocompatible
 " Enable syntax and plugin (for netrw)
 syntax enable
 filetype plugin on
+autocmd BufNewFile,BufRead *.bdy,*.pkg set syntax=sql
 
 " Search down into subfolders
 " Provides tab-completion for all rile-related tasks
@@ -148,6 +149,17 @@ nnoremap <leader>/ :noh<cr>
 map <leader>o o<Esc>
 map <leader>O O<Esc>
 
+" Tab management keybindings
+map <leader>tn :tabnew<cr>
+map <leader>t<leader> :tabnext<cr>
+map <leader>tm :tabmove
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+
+" Open file
+map <leader>oo :open 
+map <leader>ot :tabnew 
+
 " Move lines
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
@@ -177,7 +189,7 @@ nnoremap <leader>- :vertical resize -5<cr>
 " FZF bindings
 nnoremap <leader>sg :GFiles<cr>
 nnoremap <leader>sf :Files<cr>
-nnoremap <leader>sb :Buff:cr>
+nnoremap <leader>sb :Buff:<cr>
 nnoremap <leader>sr :Rg<cr>
 nnoremap <leader>sS :Lines<cr>
 nnoremap <leader>ss :BLines<cr>
@@ -188,7 +200,7 @@ nnoremap <leader>sh :History<cr>
 nnoremap <leader>sH :History:<cr>
 
 " Open Explorer
-nnoremap <leader>e :Vex
+nnoremap <leader>e :Vex<cr>
 
 
 
