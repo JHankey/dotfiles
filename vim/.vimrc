@@ -75,6 +75,9 @@ Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Hook to ensure fzf is at latest version
 Plug 'junegunn/fzf.vim'
 
+" Git management (vim port of magit)
+Plug 'jreybert/vimagit'
+
 call plug#end()
 
 
@@ -149,6 +152,11 @@ nnoremap <leader>/ :noh<cr>
 map <leader>o o<Esc>
 map <leader>O O<Esc>
 
+" Copy into system clipboard (requires compilation with +xterm_clipboard)
+nnoremap Y "+y
+vnoremap Y "+y
+nnoremap yY ^"+y$
+
 " Tab management keybindings
 map <leader>tn :tabnew<cr>
 map <leader>t<leader> :tabnext<cr>
@@ -216,3 +224,11 @@ function! ToggleNumbers()
     set relativenumber
   endif
 endfunction
+
+if system('uname -r') =~ "microsoft"
+  augroup Yank
+    autocmd!
+    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+    augroup END
+endif
+
